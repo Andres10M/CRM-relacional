@@ -23,10 +23,11 @@ class ActivityService(
             ActivityDTO(activity.id, activity.lead.id, activity.description, activity.date)
         }.orElse(null)
 
-    fun createActivity(activityDTO: ActivityDTO): ActivityDTO {
+    // Modificar el método para aceptar el leadId y activityDTO
+    fun createActivity(leadId: Long, activityDTO: ActivityDTO): ActivityDTO {
         // Buscar el Lead completo por su ID
-        val lead: Lead = leadRepository.findById(activityDTO.leadId)
-            .orElseThrow { IllegalArgumentException("Lead not found with id: ${activityDTO.leadId}") }
+        val lead: Lead = leadRepository.findById(leadId)
+            .orElseThrow { IllegalArgumentException("Lead not found with id: $leadId") }
 
         // Crear la nueva Activity usando el Lead completo
         val activity = Activity(

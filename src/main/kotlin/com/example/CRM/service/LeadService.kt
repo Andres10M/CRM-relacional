@@ -59,4 +59,16 @@ class LeadService {
         }
         leadRepository.deleteById(id)
     }
+
+    // Actualizar el estado de un lead por ID
+    fun updateStatus(id: Long, status: String): LeadDTO {
+        val existingLead = leadRepository.findById(id).orElseThrow {
+            throw RuntimeException("Lead not found with id: $id")
+        }
+
+        existingLead.status = status
+        val updatedLead = leadRepository.save(existingLead)
+
+        return LeadDTO(updatedLead.id, updatedLead.customerId, updatedLead.source, updatedLead.status)
+    }
 }

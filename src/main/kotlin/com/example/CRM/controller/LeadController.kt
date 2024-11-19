@@ -41,4 +41,11 @@ class LeadController {
     fun deleteLead(@PathVariable id: Long) {
         leadService.deleteLead(id)
     }
+
+    // Actualizar el estado de un lead por ID
+    @PutMapping("/{id}/set-status")
+    fun updateLeadStatus(@PathVariable id: Long, @RequestBody statusUpdate: Map<String, String>): LeadDTO {
+        val status = statusUpdate["status"] ?: throw IllegalArgumentException("Status is required")
+        return leadService.updateStatus(id, status)
+    }
 }
