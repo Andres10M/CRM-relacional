@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ActivityRepository : JpaRepository<Activity, Long> {
 
-    // Método personalizado para encontrar todas las actividades asociadas a un Lead
     fun findAllByLead(lead: Lead): List<Activity>
 }

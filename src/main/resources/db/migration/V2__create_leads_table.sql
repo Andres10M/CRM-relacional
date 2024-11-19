@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS leads (
-                                     id SERIAL PRIMARY KEY,
-                                     name VARCHAR(255) NOT NULL,  -- Columna 'name' es obligatoria
+    id SERIAL PRIMARY KEY,
+     name VARCHAR(255) NOT NULL,
     status VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     customer_id BIGINT,

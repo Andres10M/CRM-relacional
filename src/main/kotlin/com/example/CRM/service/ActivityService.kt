@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class ActivityService(
     private val activityRepository: ActivityRepository,
-    private val leadRepository: LeadRepository // Asegúrate de tener acceso al repositorio de Lead
+    private val leadRepository: LeadRepository
 ) {
 
     fun getAllActivities(): List<ActivityDTO> =
@@ -23,15 +23,15 @@ class ActivityService(
             ActivityDTO(activity.id, activity.lead.id, activity.description, activity.date)
         }.orElse(null)
 
-    // Modificar el método para aceptar el leadId y activityDTO
+
     fun createActivity(leadId: Long, activityDTO: ActivityDTO): ActivityDTO {
-        // Buscar el Lead completo por su ID
+
         val lead: Lead = leadRepository.findById(leadId)
             .orElseThrow { IllegalArgumentException("Lead not found with id: $leadId") }
 
-        // Crear la nueva Activity usando el Lead completo
+
         val activity = Activity(
-            lead = lead, // Usar el Lead completo
+            lead = lead,
             description = activityDTO.description,
             date = activityDTO.date
         )
