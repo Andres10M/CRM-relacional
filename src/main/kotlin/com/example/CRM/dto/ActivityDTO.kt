@@ -1,10 +1,9 @@
 package com.example.CRM.dto
 
-import java.time.LocalDateTime
-
 data class ActivityDTO(
-    val id: Long,
-    val leadId: Long,
+    val activityId: Long = 0,
+    val leadId: Long? = null,
     val description: String,
-    val date: LocalDateTime
+    val activityType: String?,
+    val activityDate: String? = null
 )
